@@ -53,3 +53,60 @@ module.exports.deleteUser =  async (req, res) => {
         return res.status(500).json({ message: err});
     }
 }
+
+module.exports.follow = async (req,res) => {
+    console.log(req.body, req.params);
+    if(!ObjectID.isValid(req.params.id) || !ObjectID.isValid(req.body.idToFollow))
+        return res.status(400).send('ID unknown : '+ req.params.id);
+
+    try{
+        await UserModel.findByIdAndUpdate(
+            req.params.id,
+            { $addToSet: { following: req.body.idToFollow }},
+            { new: true, upsert: true},
+            ((err, doc) => {
+                if(!err) return res.status(201).json(doc);
+                else return res.status(400).json({ message: err.message });
+            })
+        );
+
+        await UserModel.findByIdAndUpdate(
+            req.body.idToFollow,
+            { $addToSet: { followers:  req.params.id } },
+            { new: true, upsert: true},
+            ((err, doc) => {
+                if(err) return res.status(400).json({ message: err.message });
+            })
+        )
+    } catch (err) {
+        return res.status(500).json({ message: err});
+    }
+}
+
+module.exports.unfollow = async (req,res) => {
+    if(!ObjectID.isValid(req.params.id) || !ObjectID.isValid(req.body.idToUnfollow))
+        return res.status(400).send('ID unknown : '+ req.params.id);
+
+    try{
+        await UserModel.findByIdAndUpdate(
+            req.params.id,
+            { $pull: { following: req.body.idToUnfollow }},
+            { new: true, upsert: true},
+            ((err, doc) => {
+                if(!err) return res.status(201).json(doc);
+                else return res.status(400).json({ message: err.message });
+            })
+        );
+
+        await UserModel.findByIdAndUpdate(
+            req.body.idToUnfollow,
+            { $pull: { followers:  req.params.id } },
+            { new: true, upsert: true},
+            ((err, doc) => {
+                if(err) return res.status(400).json({ message: err.message });
+            })
+        )
+    } catch (err) {
+        return res.status(500).json({ message: err});
+    }
+}

@@ -1,15 +1,37 @@
 const UserModel = require('../models/UserModel');
 const PostModel = require('../models/PostModel');
+const { fileVerification } = require('../controllers/uploadController');
 const ObjectID = require('mongoose').Types.ObjectId;
+const fs = require('fs');
+const { promisify } = require("util");
+const pipeline = promisify(require('stream').pipeline);
+
 
 module.exports.createPost = async (req, res) => {
+    let fileName;
+
+    if(req.file !== null){
+        fileVerification(req, res);
+
+        fileName = req.body.posterId + Date.now() + '.jpg';
+
+        await pipeline(
+            req.file.stream,
+            fs.createWriteStream(
+                `${__dirname}/../client/public/uploads/posts/${fileName}`
+            )
+        );
+    }
+
     const newPost = new PostModel({
         posterId: req.body.posterId,
         message: req.body.message,
+        picture: req.file !== null ? "./uploads/posts/" + fileName : "",
         video: req.body.video,
         likers: [],
         comments: [],
     })
+
     try{
         const post = await newPost.save();
         console.log(post);

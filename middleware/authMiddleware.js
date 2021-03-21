@@ -7,7 +7,7 @@ module.exports.checkUser = (req, res, next) => {
         jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
             if(err){
                 res.locals.user = null;
-                res.cookie('jwt', '', { maxAge: 1 });
+                res.cookie('jwt', '', { maxAge: 1 }); // TODO: cookies may be deleted by this code
                 next();
             } else{
                 res.locals.user = await UserModel.findById(decodedToken.id);
@@ -27,7 +27,6 @@ module.exports.requireAuth = (req, res, next) => {
             if(err) {
                 console.log(err);
             } else {
-                console.log(decodeToken.id);
                 next();
             }
         });

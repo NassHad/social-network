@@ -75,7 +75,7 @@ const UpdateProfile = () => {
                     )
                   }
                 }
-                return '';
+                return null;
               })}
             </ul>
           </div>
@@ -101,7 +101,7 @@ const UpdateProfile = () => {
                     )
                   }
                 }
-                return '';
+                return null;
               })}
             </ul>
           </div>

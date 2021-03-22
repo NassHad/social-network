@@ -24,7 +24,7 @@ const Card = ({post}) => {
               !isEmpty(usersData[0]) &&
               usersData.map((user) => {
                 if (user._id === post.posterId) return user.picture;
-                else return '';
+                else return null;
               }).join('')
             } alt=""/>
           </div>
@@ -35,7 +35,7 @@ const Card = ({post}) => {
                   {!isEmpty(usersData[0]) &&
                   usersData.map((user) => {
                     if (user._id === post.posterId) return user.pseudo;
-                    else return '';
+                    else return null;
                   }).join('')}
                 </h3>
                 {post.posterId !== userData._id && (

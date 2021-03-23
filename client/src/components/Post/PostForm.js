@@ -27,7 +27,24 @@ const PostForm = () => {
 
   useEffect(() => {
     if (!isEmpty(userData)) setIsLoading(false);
-  }, [userData]);
+
+    const handleVideo = () => {
+      let findLink = message.split(" ");
+      console.log(findLink);
+      for (let i = 0; i < findLink.length; i++) {
+        if (findLink[i].includes('https://www.yout') || findLink[i].includes('https://yout')) {
+          let embed = findLink[i].replace("watch?v=", "embed/");
+          setVideo(embed.split("&")[0]);
+          findLink.splice(i, 1);
+          // console.log(findLink);
+          console.log(findLink.join(" "));
+          setMessage(findLink.join(" "));
+          setPicture('');
+        }
+      }
+    };
+    handleVideo();
+  }, [userData, message, video]);
 
   return (
     <div className="post-container">
@@ -50,7 +67,7 @@ const PostForm = () => {
           </NavLink>
           <div className="post-form">
             <textarea name="message" id="message" placeholder={"Quoi de neuf ?"}
-                      onChange={(e) => setMessage(e.target.value)}/>
+                      onChange={(e) => setMessage(e.target.value)} value={message}/>
             {message || picture || video.length > 20 ? (
               <li className={"card-container"}>
                 <div className={"card-left"}>

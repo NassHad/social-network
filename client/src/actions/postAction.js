@@ -2,6 +2,7 @@ import axios from "axios";
 
 // posts
 export const GET_POSTS = "GET_POSTS";
+export const CREATE_POST =  "CREATE_POST";
 export const LIKE_POST = "LIKE_POST";
 export const UNLIKE_POST = "UNLIKE_POST";
 export const UPDATE_POST = "UPDATE_POST";
@@ -49,6 +50,20 @@ export const unlikePost = (postId, userId) => {
         dispatch({type: UNLIKE_POST, payload: {postId, userId}})
       })
       .catch((err) => console.log(err));
+  }
+}
+
+export const createPost = (data) => {
+  return(dispatch) => {
+    return axios
+      .post(`${process.env.REACT_APP_API_URL}api/post/`, data)
+      .then((res) => {
+        if (res.data.errors) {
+          // dispatch({ type: GET_POST_ERRORS, payload: res.data.errors });
+        } else {
+          // dispatch({ type: GET_POST_ERRORS, payload: "" });
+        }
+      });
   }
 }
 

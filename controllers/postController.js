@@ -9,7 +9,6 @@ const pipeline = promisify(require('stream').pipeline);
 
 module.exports.createPost = async (req, res) => {
     let fileName;
-
     if(req.file !== null){
         fileVerification(req, res);
 
@@ -34,7 +33,6 @@ module.exports.createPost = async (req, res) => {
 
     try{
         const post = await newPost.save();
-        console.log(post);
         return res.status(201).json(post);
     } catch (err) {
         return res.status(400).send(err);

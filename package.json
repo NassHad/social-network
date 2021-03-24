@@ -4,8 +4,9 @@
   "description": "MERN project",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon server\" \"cd client && npm start\"",
-    "heroku-postbuild": "npm install && cd client && npm install && npm run build"
+    "start": "nodemon server",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build"
   },
   "engines": {
     "node": "15.x"
@@ -25,7 +26,6 @@
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
-    "concurrently": "^6.0.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

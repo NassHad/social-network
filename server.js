@@ -39,8 +39,8 @@ app.use('/api/post', PostRoutes);
 
 app.use(express.static('client/build'));
 
-app.get('/*', (_,res) => {
-    res.sendFile(path.join(__dirname, './client/build/index.html'));
+app.get('/', (_,res) => {
+    res.send('Hello to Social-Network API');
 })
 
 // server

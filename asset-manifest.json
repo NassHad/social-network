@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/social-network/static/css/main.6ab1f60b.chunk.css",
+    "main.js": "/social-network/static/js/main.59a4cc0f.chunk.js",
+    "main.js.map": "/social-network/static/js/main.59a4cc0f.chunk.js.map",
+    "runtime-main.js": "/social-network/static/js/runtime-main.070d2d1e.js",
+    "runtime-main.js.map": "/social-network/static/js/runtime-main.070d2d1e.js.map",
+    "static/css/2.23154d62.chunk.css": "/social-network/static/css/2.23154d62.chunk.css",
+    "static/js/2.97c27ebf.chunk.js": "/social-network/static/js/2.97c27ebf.chunk.js",
+    "static/js/2.97c27ebf.chunk.js.map": "/social-network/static/js/2.97c27ebf.chunk.js.map",
+    "index.html": "/social-network/index.html",
+    "static/css/2.23154d62.chunk.css.map": "/social-network/static/css/2.23154d62.chunk.css.map",
+    "static/css/main.6ab1f60b.chunk.css.map": "/social-network/static/css/main.6ab1f60b.chunk.css.map",
+    "static/js/2.97c27ebf.chunk.js.LICENSE.txt": "/social-network/static/js/2.97c27ebf.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/social-network/static/media/Roboto-Regular.03523cf5.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.070d2d1e.js",
+    "static/css/2.23154d62.chunk.css",
+    "static/js/2.97c27ebf.chunk.js",
+    "static/css/main.6ab1f60b.chunk.css",
+    "static/js/main.59a4cc0f.chunk.js"
+  ]
+}

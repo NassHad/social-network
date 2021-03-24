@@ -5,6 +5,7 @@ import {UidContext} from "../components/AppContext";
 import PostForm from "../components/Post/PostForm";
 import Log from "../components/Log";
 import Trends from "../components/Trends";
+import FriendHint from "../components/Profile/FriendHint";
 
 const Home = () => {
   const uid = useContext(UidContext);
@@ -21,6 +22,7 @@ const Home = () => {
             <div className="right-side-container">
               <div className="wrapper">
                 <Trends/>
+                {uid && <FriendHint/>}
               </div>
             </div>
           </div>

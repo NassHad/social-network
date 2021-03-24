@@ -10,17 +10,9 @@ const SignInForm = () => {
         const emailError = document.querySelector('.email.error');
         const passwordError = document.querySelector('.password.error')
 
-      axios({
-          method: "post",
-          url: `${process.env.REACT_APP_API_URL}api/user/login`,
-          withCredentials: false,
-          data: {
-              email,
-              password
-          },
-      })
+      axios
+          .post(`${process.env.REACT_APP_API_URL}api/user/login`, {email, password})
           .then((res) => {
-              console.log(res);
               if(res.data.errors){
                   emailError.innerHTML = res.data.errors.email;
                   passwordError.innerHTML = res.data.errors.password;

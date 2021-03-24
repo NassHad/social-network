@@ -13,7 +13,6 @@ const cors = require('cors');
 const app = express();
 
 const corsOptions = {
-    origin: "*",
     'allowedHeaders': ['sessionId', 'Content-Type'],
     'exposedHeaders': ['sessionId'],
     'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',

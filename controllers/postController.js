@@ -1,17 +1,28 @@
 const UserModel = require('../models/UserModel');
 const PostModel = require('../models/PostModel');
-const { fileVerification } = require('../controllers/uploadController');
 const ObjectID = require('mongoose').Types.ObjectId;
 const fs = require('fs');
+const {uploadErrors} = require("../utils/errorsUtils");
 const { promisify } = require("util");
 const pipeline = promisify(require('stream').pipeline);
 
 
 module.exports.createPost = async (req, res) => {
     let fileName;
-
     if(req.file !== null){
-        fileVerification(req, res);
+        try {
+            if (
+              req.file.detectedMimeType !== "image/jpg" &&
+              req.file.detectedMimeType !== "image/png" &&
+              req.file.detectedMimeType !== "image/jpeg"
+            )
+                throw Error("invalid file");
+
+            if (req.file.size > 500000) throw Error("max size");
+        } catch (err) {
+            const errors = uploadErrors(err);
+            return res.status(201).json({ errors });
+        }
 
         fileName = req.body.posterId + Date.now() + '.jpg';
 
@@ -34,10 +45,9 @@ module.exports.createPost = async (req, res) => {
 
     try{
         const post = await newPost.save();
-        console.log(post);
         return res.status(201).json(post);
     } catch (err) {
-        return res.status(400).send(err);
+        return res.status(400).json(err);
     }
 }
 

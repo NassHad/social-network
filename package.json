@@ -4,12 +4,7 @@
   "description": "MERN project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server",
-    "client": "cd client && npm start",
-    "heroku-postbuild": "cd client && npm install && npm run build"
-  },
-  "engines": {
-    "node": "15.x"
+    "start": "nodemon server"
   },
   "repository": {
     "type": "git",
@@ -21,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/NassHad/social-network/issues"
   },
+  "homepage": "https://github.com/NassHad/social-network#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
